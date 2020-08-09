@@ -1,0 +1,67 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Tutorials</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+  <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">
+</head>
+<body>
+  <div class="d-flex" id="wrapper">
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Content</div>
+      <div class="list-group list-group-flush">
+        <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+      </div>
+    </div>
+    <div id="page-content-wrapper">
+      <nav class="navbar navbar-expand-lg navbar-light bg-dark border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">Explore Content</button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+      <br/>
+      <br/>
+      <div class="container-fluid">
+        {% for allpost in post %}
+       <div class="card mb-4">
+        <div class="card-footer text-muted">
+          <h3>{{allpost.title}}</h3>
+          <br/>
+          Posted on {{allpost.created_on}} by
+          <a href="#">{{allpost.author}}</a>
+        </div>
+          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap" style="height:80;width: 60;">
+          <div class="card-body">
+            {{allpost.content | content}}
+          </div>
+        </div>
+        {% endfor %}
+       </div>
+      
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+</html>
